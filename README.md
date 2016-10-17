@@ -30,4 +30,4 @@ curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 7ee0f435-0c82-d90f-
 ```
 
 ### Swedish invoice
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Example of generated")
+![alt text](https://github.com/fisshy/invoicer/blob/master/pdf.JPG "Example of generated")
