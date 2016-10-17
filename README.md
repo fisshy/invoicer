@@ -14,9 +14,9 @@ $ npm test
 
 ### Environment
 ```
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_KEY,
-    AWS_S3_INVOICE_BUCKET
+AWS_ACCESS_KEY_ID,
+AWS_SECRET_KEY,
+AWS_S3_INVOICE_BUCKET
 ```
 
 ## Generate invoices and upload to Amazon S3
