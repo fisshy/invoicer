@@ -1,0 +1,68 @@
+{
+    "fileName": "Faktura_1",
+    "model" : {
+        "totalInclVat": 2148.44 ,
+        "totalExVat" : 3125.00,
+        "discount": 468.75,
+        "vat": 781.25,
+        "invoice": {
+            "created": "2016-10-15",
+            "duedate": "2016-11-14",
+            "lastInvoiceNumber": 1,
+            "discountPercent": 15.00,
+            "paymentTerms": 15
+        },
+        "company": {
+            "companyName": "Causam AB",
+            "address": "Test Street 15c",
+            "organisationNo": "554433-1122",
+            "email": "joachim@causam.se",
+            "phone": "0736112233",
+            "taxRegistration": "SE11111111",
+            "bankgiro": "111-5522",
+            "postgiro": "11 22 33-2",
+            "fTax": "Innehar f-skatt (for sweden)",
+            "currency": "SEK"
+        },
+        "customer": {
+            "name": "Joachim Karlsson",
+            "address": "Ernst Torulfsgatan 15c"
+        },
+        "rows": [
+            {
+                "type": "Work",
+                "description": "Joachim Karlsson",
+                "quantity": 6.25,
+                "unitPrice": 500.00,
+                "totalCost": 3125.00
+            }
+        ]
+    },
+    "text": {
+        "invoice": "Invoice",
+        "from": "From",
+        "invoiceNumber": "Invoicenumber",
+        "created": "Created",
+        "duedate": "Duedate",
+        "paymentTerms": "Payment terms",
+        "invoiceFor": "To",
+        "service": "Service",
+        "description": "Description",
+        "quantity": "Quantity",
+        "costPerUnit": "Cost per unit",
+        "total": "Total",
+        "totalExVat": "Totalt ex.vat",
+        "discount": "Discount",
+        "vat25": "Vat(25.00%)",
+        "taxReduction": "Taxredutction",
+        "totalAmountDue": "Total (amount due)",
+        "rrWork": "This invoice is eligible for tax reduction",
+        "and": "and",
+        "taxRegistration": "Taxregistration",
+        "postgiro": "Postgiro",
+        "bankgiro": "Bankgiro",
+        "phone": "Phone",
+        "email": "Email",
+        "days": "days"
+    }
+}

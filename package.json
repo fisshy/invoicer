@@ -1,0 +1,28 @@
+{
+  "name": "invoicer",
+  "version": "1.0.0",
+  "description": "generate invoice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "test": "ava"
+  },
+  "keywords": [
+    "pdf",
+    "html",
+    "invoice",
+    "generate"
+  ],
+  "author": "Joachim Karlsson",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.16.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.6.9",
+    "hapi": "^15.1.1",
+    "html-pdf": "^2.1.0",
+    "mustache": "^2.2.1",
+    "rollbar": "^0.6.2"
+  }
+}

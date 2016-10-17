@@ -1,0 +1,404 @@
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Invoice</title>
+    <style>
+
+        html {
+            font-family: 'Roboto', 'Helvetica', sans-serif !important;
+            color: #525252;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .mdl-grid {
+            padding: 8px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+            -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+            margin: 0 auto;
+            -webkit-align-items: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+        }
+
+        .no-padding-top-bottom {
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .no-padding-left {
+            padding-left: 0px;
+        }
+
+
+        .no-margin-top-bottom {
+            margin-top:0px;
+            margin-bottom: 0px;
+        }
+
+        .no-margin-top-bottom-left {
+            margin-top:0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .border-right {
+            border-right: 1px solid #ccc;
+        }
+
+        .border-left {
+            border-left: 1px solid #ccc;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .padding-top {
+            padding-top:8px;
+        }
+
+        .padding-left {
+            padding-left: 3px;
+
+        }
+
+        .padding-right {
+            padding-right: 8px;
+        }
+
+        .margin-top {
+            margin-top:8px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        textarea, input {
+            padding:2px;
+            margin-top:1px;
+            width: 155px;
+        }
+
+        textarea {
+            height: 50px;
+        }
+
+        table {
+            width: 100%;
+            text-align: right;
+             border-collapse: collapse;
+             font-size: 14px;
+        }
+
+        table .left {
+            text-align: left;
+        }
+
+        table tr td {
+            padding:5px;
+            padding-top:10px;
+            padding-bottom: 10px;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        table tr th {
+            margin: 0;
+            padding:5px;
+            font-size: 14px;
+        }
+
+
+        .mdl-cell {
+            box-sizing: border-box;
+            margin: 8px;
+        }
+
+        .mdl-cell-9-col {
+            width: calc(33.3333333333% - 16px);
+        }
+
+        .mdl-cell--12-col {
+            width: calc(100% - 16px);
+        }
+
+        .mdl-cell--8-col {
+            width: calc(66.6666666667% - 16px);
+        }
+
+        .mdl-cell--7-col {
+            width: calc(58.3333333333% - 16px);
+        }
+
+        .mdl-cell--5-col {
+            width: calc(41.6666666667% - 16px);
+        }
+
+        .mdl-cell--4-col {
+            width: calc(33.3333333333% - 16px);
+        }
+
+        .mdl-cell--3-col {
+            width: calc(25% - 16px);
+        }
+
+
+    </style>
+  </head>
+  <body>
+      <div>
+          <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--12-col">
+                  <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--7-col">
+                          <h1>{{ text.invoice }}</h1>
+                      </div>
+                      <div class="mdl-cell mdl-cell--5-col">
+                          <div class="mdl-grid">
+                              <div class="mdl-cell mdl-cell--5-col text-right  border-right padding-right">
+                                  {{ text.from }}
+                              </div>
+                              <div class="mdl-cell mdl-cell--7-col margin-top">
+                                  <strong>{{ model.company.companyName }}</strong> <br/>
+                                  <span>{{ model.company.address }}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="mdl-cell mdl-cell--7-col padding-top">
+                          <div class="mdl-grid no-padding-top-bottom no-margin-top-bottom no-padding-left">
+                              <div class="mdl-cell mdl-cell--4-col no-padding-top-bottom no-margin-top-bottom-left border-right">
+                                    {{ text.invoiceNumber }} <br/>
+                                    {{ text.created }} <br/>
+                                    {{ text.duedate }} <br/>
+                                    {{ text.paymentTerms }}
+                              </div>
+                              <div class="mdl-cell mdl-cell-8-col no-padding-top-bottom no-margin-top-bottom padding-left">
+                                  {{ model.invoice.lastInvoiceNumber }}<br/>
+                                  {{ model.invoice.created }}<br/>
+                                  {{ model.invoice.duedate }}<br/>
+                                  {{ model.invoice.paymentTerms }} {{ text.days }}
+                              </div>
+                          </div>
+                      </div>
+                      <div class="mdl-cell mdl-cell--5-col">
+                          <div class="mdl-grid">
+                              <div class="mdl-cell mdl-cell--5-col text-right  border-right padding-right">
+                                  {{ text.invoiceFor }}
+                              </div>
+                              <div class="mdl-cell mdl-cell--7-col">
+                                  <strong>{{ model.customer.name }}</strong> <br/>
+                                  <span>{{ model.customer.address }}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--12-col">
+                          <table>
+                              <thead class="table">
+                                  <tr>
+                                      <th  class="left  border-right border-bottom">
+                                          {{ text.service }}
+                                      </th>
+                                      <th  class="left border-right border-bottom">
+                                          {{ text.description }}
+                                      </th>
+                                      <th class="border-right border-bottom">
+                                          {{ text.quantity }}
+                                      </th>
+                                      <th class="border-right border-bottom">
+                                          {{ text.costPerUnit }}
+                                      </th>
+                                      <th class="border-bottom">
+                                          {{ text.total }}
+                                      </th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {{#model.rows}}
+                                  <tr *ngFor="let row of model.rows">
+                                      <td class="left border-right border-bottom">
+                                          <span>{{ type }}</span>
+                                      </td>
+                                      <td class="left border-right border-bottom">
+                                          <span>{{ description }}</span>
+                                      </td>
+                                      <td class="border-right border-bottom">
+                                          <span>{{ quantity }}</span>
+                                      </td>
+                                      <td class="border-right border-bottom">
+                                          <span>{{ unitPrice }}</span>
+                                      </td>
+                                      <td class="border-bottom">
+                                          {{ totalCost }}
+                                      </td>
+                                  </tr>
+                                  {{/model.rows}}
+                                  <tr>
+                                      <td>
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                          {{ text.totalExVat }}
+                                      </td>
+                                      <td>
+                                          <strong>{{ model.totalExVat }} {{ model.company.currency }}</strong>
+                                      </td>
+                                  </tr>
+                                  {{#model.invoice.discountPercent}}
+                                  <tr>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                          {{ text.discount }}({{ model.invoice.discountPercent }}%)
+                                      </td>
+                                      <td>
+                                          <strong>{{ model.discount  }} {{ model.company.currency }}</strong>
+                                      </td>
+                                  </tr>
+                                  {{/model.invoice.discountPercent}}
+                                  <tr>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                          {{ text.vat25 }}
+                                      </td>
+                                      <td>
+                                          <strong>{{ model.vat }}  {{ model.company.currency }}</strong>
+                                      </td>
+                                  </tr>
+                                  {{#model.rr}}
+                                  <tr>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                          {{ text.taxReduction }} ({{ model.rr.reductionPercent }}%)
+                                      </td>
+                                      <td>
+                                          <strong>{{ model.rr.totalReduction }} {{ model.company.currency }}</strong>
+                                      </td>
+                                  </tr>
+                                  {{/model.rr}}
+                                  <tr>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                          <strong>{{ text.totalAmountDue }}</strong>
+                                      </td>
+                                      <td>
+                                          <strong>{{ model.totalInclVat }} {{ model.company.currency }}    </strong>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                          {{#model.rr}}
+                          <div>
+                              {{ text.rrWork }} <strong>{{ model.rr.cadastral }}</strong>. <br/>
+                              {{ text.buyer }} {{ model.rr.name }}, {{ model.rr.identityNumber }}
+                              {{#model.rr.secondName}}
+                                <span>{{ text.and }} {{ model.rr.secondName }}, {{ model.rr.secondIdentityNumber }}</span>
+                              {{/model.rr.secondName}}
+                          </div>
+                          {{/model.rr}}
+                      </div>
+                  </div>
+                  <hr />
+                  <div class="mdl-grid">
+                      <div class="mdl-cell--12-col">
+                          <div class="mdl-grid">
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ model.company.fTax }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ text.taxRegistration }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  {{ model.company.taxRegistration }}
+                              </div>
+                          </div>
+
+                          <div class="mdl-grid">
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ text.postgiro }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  {{ model.company.postgiro }}
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ text.bankgiro }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  {{ model.company.bankgiro }}
+                              </div>
+                          </div>
+
+                          <div class="mdl-grid">
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ text.phone }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  {{ model.company.phone }}
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  <strong>{{ text.email }}</strong>
+                              </div>
+                              <div class="mdl-cell--3-col">
+                                  {{ model.company.email }}
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+</html>
