@@ -15,7 +15,7 @@ server.route({
     method: 'POST',
     path:'/invoice/s3',
     handler: function (request, reply) {
-        let payload = JSON.parse(request.payload);
+        let payload = request.payload;
         invoicer.uploadS3(payload.template, payload,
             (error, s3Url) => {
                 if(error) {
