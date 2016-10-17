@@ -27,6 +27,14 @@ curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 7ee0f435-0c82-d90f-
 	"name": "Joachim",
 	"fileName": "test.pdf"
 }' "http://localhost:8082/invoice/s3"
+
+Result
+
+{
+  "success": true,
+  "url": "https://{{yourBucket}}s3-eu-west-1.amazonaws.com/test.pdf"
+}
+
 ```
 
 ### Swedish invoice
