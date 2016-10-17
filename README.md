@@ -1,4 +1,6 @@
 ## Microservice to generate Invoice/PDF and upload to S3
+built upon [mustache](https://github.com/janl/mustache.js) and
+[node-html-pdf](https://github.com/marcbachmann/node-html-pdf)
 
 ## Install
 ```
