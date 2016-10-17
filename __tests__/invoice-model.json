@@ -26,7 +26,7 @@
         },
         "customer": {
             "name": "Joachim Karlsson",
-            "address": "Ernst Torulfsgatan 15c"
+            "address": "Test street 15c"
         },
         "rows": [
             {
