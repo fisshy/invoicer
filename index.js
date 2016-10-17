@@ -21,7 +21,7 @@ const getTemplate = (templateName) => {
     }
 
     try {
-        let tmp = fs.readFileSync(`${__dirname}\\templates\\${templateName}.html`, 'utf8'); /* maybe verify before */
+        let tmp = fs.readFileSync(`${__dirname}/templates/${templateName}.html`, 'utf8'); /* maybe verify before */
         if(tmp) {
             template[templateName] = tmp;
         }
