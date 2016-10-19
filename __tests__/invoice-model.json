@@ -1,17 +1,15 @@
 {
-    "fileName": "Faktura_1",
     "model" : {
+        "fileName": "Faktura_1",
         "totalInclVat": 2148.44 ,
-        "totalExVat" : 3125.00,
+        "totalExclVat" : 3125.00,
         "discount": 468.75,
         "vat": 781.25,
-        "invoice": {
-            "created": "2016-10-15",
-            "duedate": "2016-11-14",
-            "lastInvoiceNumber": 1,
-            "discountPercent": 15.00,
-            "paymentTerms": 15
-        },
+        "created": "2016-10-15",
+        "duedate": "2016-11-14",
+        "invoiceNumber": 1,
+        "discountPercent": 15.00,
+        "paymentTerms": 15,
         "company": {
             "companyName": "Causam AB",
             "address": "Test Street 15c",
@@ -30,7 +28,7 @@
         },
         "rows": [
             {
-                "type": "Work",
+                "typeDescription": "Work",
                 "description": "Joachim Karlsson",
                 "quantity": 6.25,
                 "unitPrice": 500.00,

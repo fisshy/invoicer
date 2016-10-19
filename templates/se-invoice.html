@@ -185,10 +185,10 @@
                                     {{ text.paymentTerms }}
                               </div>
                               <div class="mdl-cell mdl-cell-8-col no-padding-top-bottom no-margin-top-bottom padding-left">
-                                  {{ model.invoice.lastInvoiceNumber }}<br/>
-                                  {{ model.invoice.created }}<br/>
-                                  {{ model.invoice.duedate }}<br/>
-                                  {{ model.invoice.paymentTerms }} {{ text.days }}
+                                  {{ model.invoiceNumber }}<br/>
+                                  {{ model.created }}<br/>
+                                  {{ model.duedate }}<br/>
+                                  {{ model.paymentTerms }} {{ text.days }}
                               </div>
                           </div>
                       </div>
@@ -230,7 +230,7 @@
                                   {{#model.rows}}
                                   <tr *ngFor="let row of model.rows">
                                       <td class="left border-right border-bottom">
-                                          <span>{{ type }}</span>
+                                          <span>{{ typeDescription }}</span>
                                       </td>
                                       <td class="left border-right border-bottom">
                                           <span>{{ description }}</span>
@@ -259,10 +259,10 @@
                                           {{ text.totalExVat }}
                                       </td>
                                       <td>
-                                          <strong>{{ model.totalExVat }} {{ model.company.currency }}</strong>
+                                          <strong>{{ model.totalExclVat }} {{ model.company.currency }}</strong>
                                       </td>
                                   </tr>
-                                  {{#model.invoice.discountPercent}}
+                                  {{#model.discountPercent}}
                                   <tr>
                                       <td>
 
@@ -274,13 +274,13 @@
 
                                       </td>
                                       <td>
-                                          {{ text.discount }}({{ model.invoice.discountPercent }}%)
+                                          {{ text.discount }}({{ model.discountPercent }}%)
                                       </td>
                                       <td>
                                           <strong>{{ model.discount  }} {{ model.company.currency }}</strong>
                                       </td>
                                   </tr>
-                                  {{/model.invoice.discountPercent}}
+                                  {{/model.discountPercent}}
                                   <tr>
                                       <td>
 
@@ -310,10 +310,10 @@
 
                                       </td>
                                       <td>
-                                          {{ text.taxReduction }} ({{ model.rr.reductionPercent }}%)
+                                          {{ text.taxReduction }} ({{ model.reductionPercent }}%)
                                       </td>
                                       <td>
-                                          <strong>{{ model.rr.totalReduction }} {{ model.company.currency }}</strong>
+                                          <strong>{{ model.totalReduction }} {{ model.company.currency }}</strong>
                                       </td>
                                   </tr>
                                   {{/model.rr}}

@@ -33,20 +33,26 @@ const getTemplate = (templateName) => {
     }
 }
 
-const render = (templateName, model) => {
+const render = (templateName, data) => {
     let htmlTemplate = getTemplate(templateName);
-    let html = mustasche.render(htmlTemplate, model);
+    if(htmlTemplate == null) {
+        return null;
+    }
+    let html = mustasche.render(htmlTemplate, data);
     return html;
 }
 
-const  pdf = (templateName, model, next) => {
-    let html = render(templateName, model);
+const  pdf = (templateName, data, next) => {
+    let html = render(templateName, data);
+    if(html == null) {
+        return next('TEMPLATE_NOT_FOUND');
+    }
     let options = { format: 'Letter' };
     htmlToPdf.create(html, options).toStream(next);
 }
 
-const uploadS3 = (templateName, model, next) => {
-    pdf(templateName, model, (err, stream) => {
+const uploadS3 = (templateName, data, next) => {
+    pdf(templateName, data, (err, stream) => {
         if(err) {
             log.error(err, 'invoice pdf generator');
             console.log("Error uploading data: ", err);
@@ -54,7 +60,7 @@ const uploadS3 = (templateName, model, next) => {
         }
 
         const s3Params = {
-            Key: model.fileName,
+            Key: data.model.fileName,
             Expires: new Date(Date.now() + 31536000),
             CacheControl: `public, max-age=${31536000}`,
             Body: stream,
@@ -62,13 +68,13 @@ const uploadS3 = (templateName, model, next) => {
             ACL: 'public-read'
         };
 
-        s3bucket.upload(s3Params, function(err, data) {
+        s3bucket.upload(s3Params, function(err, result) {
             if (err) {
                 log.error(err, 's3-upload');
                 console.log("Error uploading data: ", err);
                 return next('UNHANDLED_EXCEPTION');
             } else {
-                return next(null, data.Location);
+                return next(null, result.Location);
             }
         });
     });
