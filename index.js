@@ -47,7 +47,19 @@ const  pdf = (templateName, data, next) => {
     if(html == null) {
         return next('TEMPLATE_NOT_FOUND');
     }
-    let options = { format: 'Letter' };
+    let options = {
+        format: 'Letter',
+        "header": {
+            "height": "10mm",
+            "contents": render('header', data)
+          },
+          "footer": {
+            "height": "10mm",
+            "contents": {
+              default: '<div style="text-align: center;"><strong style="color: #444;">{{page}}</strong>/<strong>{{pages}}</strong></div>'
+            }
+        },
+    };
     htmlToPdf.create(html, options).toStream(next);
 }
 
