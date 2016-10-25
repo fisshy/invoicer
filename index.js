@@ -13,7 +13,9 @@ var s3bucket = new AWS.S3({
 const mustasche = require('mustache');
 const log = require('./log');
 
+/* TODO: Should probably use redis/memcache for this */
 const template = {};
+const templateText = {};
 
 const getTemplate = (templateName) => {
     if(template[templateName]) {
@@ -38,6 +40,27 @@ const render = (templateName, data) => {
     if(htmlTemplate == null) {
         return null;
     }
+
+    if(!data.text) {
+        let textTemplateName = `${templateName}-text`;
+
+        if(!templateText[textTemplateName]) {
+            try {
+                let text = require(`${__dirname}/templates/${textTemplateName}.json`);
+                if(text) {
+                    data.text = text;
+                    templateText[textTemplateName] = text;
+                }
+            } catch(e) {
+                console.log("error", e);
+                log.error(e, 'invoice pdf generator');
+                return null;
+            }
+        } else {
+            data.text = templateText[textTemplateName];
+        }
+    }
+
     let html = mustasche.render(htmlTemplate, data);
     return html;
 }
