@@ -35,33 +35,41 @@ const getTemplate = (templateName) => {
     }
 }
 
+const text = (templateName) => {
+    let textTemplateName = `${templateName}-text`;
+    if(!templateText[textTemplateName]) {
+        try {
+            let text = require(`${__dirname}/templates/${textTemplateName}.json`);
+            if(text) {
+                templateText[textTemplateName] = text;
+                return text;
+            }
+        } catch(e) {
+            console.log("error", e);
+            log.error(e, 'invoice pdf generator');
+            return null;
+        }
+    } else {
+        return templateText[textTemplateName];
+    }
+}
+const updateText = (data) => {
+    if(!data.text || !data.model || !data.model.rr) return data;
+    if(!data.text.rrWork) return data;
+    data.text.rrWork = data.model.rr.type === "Rut" ? data.text.rutWork : data.text.rrWork;
+    console.log("update text", data);
+    return data;
+}
+
 const render = (templateName, data) => {
     let htmlTemplate = getTemplate(templateName);
     if(htmlTemplate == null) {
         return null;
     }
-
     if(!data.text) {
-        let textTemplateName = `${templateName}-text`;
-
-        if(!templateText[textTemplateName]) {
-            try {
-                let text = require(`${__dirname}/templates/${textTemplateName}.json`);
-                if(text) {
-                    data.text = text;
-                    templateText[textTemplateName] = text;
-                }
-            } catch(e) {
-                console.log("error", e);
-                log.error(e, 'invoice pdf generator');
-                return null;
-            }
-        } else {
-            data.text = templateText[textTemplateName];
-        }
+        data.text = text(templateName);
     }
-
-    let html = mustasche.render(htmlTemplate, data);
+    let html = mustasche.render(htmlTemplate, updateText(data));
     return html;
 }
 
