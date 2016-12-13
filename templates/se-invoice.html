@@ -281,6 +281,29 @@
                                       </td>
                                   </tr>
                                   {{/model.discountPercent}}
+                                  {{^model.discountPercent}}
+                                    {{#model.discount}}
+                                      <tr>
+                                          <td>
+
+                                          </td>
+                                          <td>
+
+                                          </td>
+                                          <td>
+
+                                          </td>
+                                          <td>
+                                              {{ text.discount }}({{ model.company.currency }})
+                                          </td>
+                                          <td>
+                                              <strong>{{ model.discount  }} {{ model.company.currency }}</strong>
+                                          </td>
+                                      </tr>
+                                    {{/model.discount}}
+                                  {{/model.discountPercent}}
+
+                                  {{#model.discountRestPercent}}
                                   <tr>
                                       <td>
 
@@ -292,12 +315,35 @@
 
                                       </td>
                                       <td>
-                                          {{ text.vat25 }}
+                                          {{ text.discountRest }}({{ model.discountRestPercent }}%)
                                       </td>
                                       <td>
-                                          <strong>{{ model.vat }}  {{ model.company.currency }}</strong>
+                                          <strong>{{ model.discountRest  }} {{ model.company.currency }}</strong>
                                       </td>
                                   </tr>
+                                  {{/model.discountRestPercent}}
+                                  {{^model.discountRestPercent}}
+                                    {{#model.discountRest}}
+                                      <tr>
+                                          <td>
+
+                                          </td>
+                                          <td>
+
+                                          </td>
+                                          <td>
+
+                                          </td>
+                                          <td>
+                                              {{ text.discountRest }}({{ model.company.currency }})
+                                          </td>
+                                          <td>
+                                              <strong>{{ model.discountRest  }} {{ model.company.currency }}</strong>
+                                          </td>
+                                      </tr>
+                                    {{/model.discountRest}}
+                                  {{/model.discountRestPercent}}
+
                                   {{#model.rr}}
                                   <tr>
                                       <td>
